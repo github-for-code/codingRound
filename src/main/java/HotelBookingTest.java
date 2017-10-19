@@ -1,8 +1,9 @@
-import com.sun.javafx.PlatformUtil;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
@@ -24,10 +25,12 @@ public class HotelBookingTest {
 
     @Test
     public void shouldBeAbleToSearchForHotels() {
+        driver.manage().window().setSize(new Dimension(1500,800));
         setDriverPath();
 
         driver.get("https://www.cleartrip.com/");
-        hotelLink.click();
+        searchButton.click();
+//        hotelLink.click();
 
         localityTextBox.sendKeys("Indiranagar, Bangalore");
 
@@ -38,16 +41,20 @@ public class HotelBookingTest {
 
     }
 
+//    private void setDriverPath() {
+//        if (PlatformUtil.isMac()) {
+//            System.setProperty("webdriver.chrome.driver", "chromedriver");
+//        }
+//        if (PlatformUtil.isWindows()) {
+//            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+//        }
+//        if (PlatformUtil.isLinux()) {
+//            System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
+//        }
+//    }
+
     private void setDriverPath() {
-        if (PlatformUtil.isMac()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver");
-        }
-        if (PlatformUtil.isWindows()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        }
-        if (PlatformUtil.isLinux()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
-        }
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
     }
 
 }

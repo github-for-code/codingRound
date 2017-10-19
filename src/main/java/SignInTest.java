@@ -1,7 +1,9 @@
-import com.sun.javafx.PlatformUtil;
+//import com.sun.javafx.PlatformUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,12 +14,15 @@ public class SignInTest {
     @Test
     public void shouldThrowAnErrorIfSignInDetailsAreMissing() {
 
+        driver.manage().window().setSize(new Dimension(1300,1000));
         setDriverPath();
 
         driver.get("https://www.cleartrip.com/");
         waitFor(2000);
 
         driver.findElement(By.linkText("Your trips")).click();
+        waitFor(5000);
+
         driver.findElement(By.id("SignIn")).click();
 
         driver.findElement(By.id("signInButton")).click();
@@ -35,16 +40,20 @@ public class SignInTest {
         }
     }
 
+//    private void setDriverPath() {
+//        if (PlatformUtil.isMac()) {
+//            System.setProperty("webdriver.chrome.driver", "chromedriver");
+//        }
+//        if (PlatformUtil.isWindows()) {
+//            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+//        }
+//        if (PlatformUtil.isLinux()) {
+//            System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
+//        }
+//    }
+
     private void setDriverPath() {
-        if (PlatformUtil.isMac()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver");
-        }
-        if (PlatformUtil.isWindows()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        }
-        if (PlatformUtil.isLinux()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
-        }
+        System.setProperty("webdriver.chrome.driver", "chromedriver");
     }
 
 
