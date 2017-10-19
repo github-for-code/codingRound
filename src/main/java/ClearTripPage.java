@@ -4,7 +4,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class ClearTripPage {
+public class ClearTripPage extends CommonGlobals {
 
     // For Flight Booking
     @FindBy(id = "OneWay")
@@ -53,22 +53,44 @@ public class ClearTripPage {
     public WebElement hotelLink;
 
     @FindBy(id = "Tags")
-    private WebElement localityTextBox;
+    public WebElement localityTextBox;
+
+    @FindAll({@FindBy(id = "ui-id-1"), @FindBy(css = "li > a")})
+    public List<WebElement> localityOptions;
+
+    public void setLocality(String locality) {
+        localityTextBox.clear();
+        localityTextBox.sendKeys(locality);
+        waitFor(2000);
+
+        localityOptions.get(0).click();
+    }
+
+    @FindBy(xpath = "//*[@id='ui-datepicker-div']/div[1]/table/tbody/tr[4]/td[7]/a")
+    public WebElement checkInDate;
+
+    @FindBy(xpath = "//*[@id='ui-datepicker-div']/div[1]/table/tbody/tr[5]/td[7]/a")
+    public WebElement checkOutDate;
 
     @FindBy(id = "SearchHotelsButton")
-    private WebElement searchButton;
+    public WebElement searchHotelsButton;
 
     @FindBy(id = "travellersOnhome")
-    private WebElement travellerSelection;
+    public WebElement travellerSelection;
 
+    // Sign In Page
+    @FindBy(linkText = "Your trips")
+    public WebElement yourTrips;
 
-    /* We can a common waitFor across here & TestBase.. But at small scale, this is fine */
-    protected void waitFor(int durationInMilliSeconds) {
-        try {
-            Thread.sleep(durationInMilliSeconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-    }
+    @FindBy(id = "SignIn")
+    public WebElement signIn;
+
+    @FindBy(id = "signInButton")
+    public WebElement signInButton;
+
+    @FindBy(id = "errors1")
+    public WebElement errors1;
+
+    String SignInModalStringId = "modal_window";
 
 }

@@ -1,59 +1,29 @@
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HotelBookingTest {
+public class HotelBooking extends ClearTripTest {
 
-    WebDriver driver = new ChromeDriver();
-
-    @FindBy(linkText = "Hotels")
-    private WebElement hotelLink;
-
-    @FindBy(id = "Tags")
-    private WebElement localityTextBox;
-
-    @FindBy(id = "SearchHotelsButton")
-    private WebElement searchButton;
-
-    @FindBy(id = "travellersOnhome")
-    private WebElement travellerSelection;
 
     @Test
     public void shouldBeAbleToSearchForHotels() {
-        driver.manage().window().setSize(new Dimension(1500, 800));
-        setDriverPath();
 
         driver.get("https://www.cleartrip.com/");
-        searchButton.click();
-//        hotelLink.click();
+        page.hotelLink.click();
 
-        localityTextBox.sendKeys("Indiranagar, Bangalore");
+        page.setLocality("Indiranagar, Bangalore");
+        page.checkInDate.click();
+        waitFor(1000);
+        page.checkOutDate.click();
 
-        new Select(travellerSelection).selectByVisibleText("1 room, 2 adults");
-        searchButton.click();
+        new Select (page.travellerSelection).selectByVisibleText("2 rooms, 4 adults");
+        page.searchHotelsButton.click();
+        Assert.assertTrue(isElementPresent(page.searchSummary));
+
+        waitFor(4000);
 
         driver.quit();
 
-    }
-
-//    private void setDriverPath() {
-//        if (PlatformUtil.isMac()) {
-//            System.setProperty("webdriver.chrome.driver", "chromedriver");
-//        }
-//        if (PlatformUtil.isWindows()) {
-//            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-//        }
-//        if (PlatformUtil.isLinux()) {
-//            System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
-//        }
-//    }
-
-    private void setDriverPath() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
     }
 
 }
