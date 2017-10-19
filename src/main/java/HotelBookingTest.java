@@ -2,7 +2,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HotelBooking extends ClearTripTest {
+public class HotelBookingTest extends ClearTripTest {
 
 
     @Test
