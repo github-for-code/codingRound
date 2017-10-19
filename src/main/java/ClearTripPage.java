@@ -13,17 +13,20 @@ public class ClearTripPage {
     @FindBy(id = "FromTag")
     public WebElement fromTag;
 
-    @FindAll({@FindBy(id = "ui-id-1"),@FindBy(tagName = "li")})
+    @FindAll({@FindBy(id = "ui-id-1"), @FindBy(tagName = "li")})
     public List<WebElement> originOptions;
 
     @FindBy(id = "ToTag")
     public WebElement toTag;
 
-    @FindAll({@FindBy(id = "ui-id-2"),@FindBy(tagName = "li")})
+    @FindAll({@FindBy(id = "ui-id-2"), @FindBy(tagName = "li")})
     public List<WebElement> destinationOptions;
 
-    @FindBy(id = "searchBtn")
+    @FindBy(id = "SearchBtn")
     public WebElement searchBtn;
+
+    @FindBy(xpath = "//*[@id='ui-datepicker-div']/div[1]/table/tbody/tr[4]/td[7]/a")
+    public WebElement travelDate;
 
     @FindBy(className = "searchSummary")
     public WebElement searchSummary;
@@ -38,7 +41,7 @@ public class ClearTripPage {
 
     public void setDestination(String destination) {
         toTag.clear();
-        toTag.sendKeys(destination)
+        toTag.sendKeys(destination);
         waitFor(2000);
 
         destinationOptions.get(0).click();

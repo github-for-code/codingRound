@@ -1,9 +1,9 @@
 //import com.sun.javafx.PlatformUtils;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,7 +14,7 @@ public class SignInTest {
     @Test
     public void shouldThrowAnErrorIfSignInDetailsAreMissing() {
 
-        driver.manage().window().setSize(new Dimension(1300,1000));
+        driver.manage().window().setSize(new Dimension(1300, 1000));
         setDriverPath();
 
         driver.get("https://www.cleartrip.com/");
