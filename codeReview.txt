@@ -1,0 +1,4 @@
+Code Review and comments:
+1. Made a page object for cleartrip page.
+2. Reused same page object for all three test cases.
+3. Created a base class "ClearTripTest" which is extended to avoid redeclaration of driver and other common functions.
